@@ -12,7 +12,7 @@ export default function AmbulanceDashboard() {
   const [ambulances, setAmbulances] = useState(STATIC_AMBULANCES);
 
   useEffect(() => {
-    fetch('http://localhost:3005/api/ambulances')
+    fetch('/api/ambulances')
       .then((res) => res.json())
       .then((data) => {
         setAmbulances(

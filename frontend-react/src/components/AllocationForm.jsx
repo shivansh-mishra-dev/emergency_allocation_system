@@ -14,7 +14,7 @@ export default function AllocationForm() {
 
     const resultEl = document.getElementById('allocationResult');
 
-    fetch('http://localhost:3005/api/allocate', {
+    fetch('/api/allocate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sector: location, priority, hospital }),
@@ -31,12 +31,12 @@ export default function AllocationForm() {
         }
       })
       .catch(() => {
-        setResult({ type: 'error', message: 'Could not connect to the backend server (http://localhost:3005). Please ensure server is running.' });
+        setResult({ type: 'error', message: 'Could not connect to the backend server (). Please ensure server is running.' });
       });
   }
 
   function resetAmbulances() {
-    fetch('http://localhost:3005/api/reset', { method: 'POST' })
+    fetch('/api/reset', { method: 'POST' })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
