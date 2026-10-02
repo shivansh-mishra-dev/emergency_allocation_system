@@ -32,8 +32,7 @@ const nearest = (list, p) =>
   }, null);
 
 export default function MapSection() {
-  const mapRef = useRef(null);  // DOM node
-  const stateRef = useRef({});  // mutable map state
+  const mapRef = useRef(null);
 
   useEffect(() => {
     if (!window.L) return;
@@ -43,8 +42,8 @@ export default function MapSection() {
     const icon = (cls, t) =>
       L.divIcon({
         className: '',
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
         html: `<div class="pin ${cls}">${t}</div>`,
       });
 
@@ -103,9 +102,11 @@ export default function MapSection() {
           km = r.routes[0].distance / 1000;
           path = r.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]);
         }
-      } catch (_) {}
+      } catch {
+        // Fallback to straight line
+      }
 
-      route = L.polyline(path, { color: '#e23744', weight: 5 }).addTo(map);
+      route = L.polyline(path, { color: '#6366F1', weight: 4 }).addTo(map);
       $('qAmb').textContent = `${amb.item.id} (${km.toFixed(1)} km)`;
       $('qEta').textContent = `${Math.max(1, Math.round((km / SPEED) * 60))} min`;
     }
@@ -143,7 +144,7 @@ export default function MapSection() {
 
       const specificAmb = ambulances.find((a) => a.id === allocatedId);
       if (!specificAmb) {
-        resultEl.innerHTML = `<p style="color:red;">❌ Ambulance not found on map.</p>`;
+        resultEl.innerHTML = `<p style="color:var(--color-error); font-size:13px; margin-top:12px;">❌ Ambulance not found on map.</p>`;
         return;
       }
 
@@ -163,20 +164,23 @@ export default function MapSection() {
           km = r.routes[0].distance / 1000;
           path = r.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]);
         }
-      } catch (_) {}
+      } catch {
+        // Fallback to straight line
+      }
 
       if (route) map.removeLayer(route);
-      route = L.polyline(path, { color: '#e23744', weight: 5 }).addTo(map);
+      route = L.polyline(path, { color: '#6366F1', weight: 4 }).addTo(map);
       $('qAmb').textContent = `${specificAmb.id} (${km.toFixed(1)} km)`;
       $('qEta').textContent = `${Math.max(1, Math.round((km / 40) * 60))} min`;
 
       resultEl.innerHTML = `
         <div class="allocation-result">
-          <h3>🚑 Ambulance Allocated (Via Backend!)</h3>
-          <p><strong>Ambulance:</strong> ${specificAmb.id}</p>
-          <p><strong>Priority:</strong> ${priority}</p>
-          <p><strong>Hospital:</strong> ${hospitalName}</p>
-          <p><strong>Status:</strong> Assigned</p>
+          <h3>Ambulance Assigned</h3>
+          <p><strong>Fleet Unit:</strong> <code style="font-family:var(--font-code); color:var(--color-primary);">${specificAmb.id}</code></p>
+          <p><strong>Triage Priority:</strong> ${priority}</p>
+          <p><strong>Destination:</strong> ${hospitalName}</p>
+          <p><strong>Route Distance:</strong> ${km.toFixed(1)} km</p>
+          <p><strong>Dispatch Status:</strong> <span class="status-pill busy"><span class="status-dot"></span>En Route</span></p>
         </div>`;
 
       map.setView(patient, 14);
@@ -193,44 +197,34 @@ export default function MapSection() {
       <div className="map-container">
         <div className="map-heading">
           <div>
-            <h2>🗺️ Chandigarh Emergency Map</h2>
-            <p>Ambulance and hospital locations for emergency allocation</p>
+            <span className="section-overline">GEOSPATIAL DISPATCH</span>
+            <h2>Chandigarh Emergency Grid</h2>
+            <p>Live GPS positioning for active ambulances, medical centers, and incident reports</p>
           </div>
-          <div className="map-status"><span>● System Active</span></div>
+          <div className="map-status">
+            <span className="status-dot" style={{ backgroundColor: 'var(--color-success)' }} />
+            Telemetry Online
+          </div>
         </div>
 
         <div className="em-layout">
-          <div ref={mapRef} id="map" style={{ height: '520px', borderRadius: '12px' }} />
+          <div ref={mapRef} id="map" style={{ height: '540px' }} />
           <aside className="em-side">
-            <h3>Available Resources</h3>
+            <h3>Fleet Telemetry</h3>
             <div className="em-row"><span>Available Ambulances</span><b id="cOk">0</b></div>
-            <div className="em-row"><span>Busy Ambulances</span><b id="cBusy">0</b></div>
-            <div className="em-row"><span>Hospitals</span><b id="cHosp">0</b></div>
-            <div className="em-row"><span>Patients</span><b id="cPat">0</b></div>
+            <div className="em-row"><span>Engaged / Busy</span><b id="cBusy">0</b></div>
+            <div className="em-row"><span>Hospital Centers</span><b id="cHosp">0</b></div>
+            <div className="em-row"><span>Active Incidents</span><b id="cPat">0</b></div>
             <div className="em-quick">
-              <strong>Quick View</strong>
-              <p><small>Nearest Ambulance</small><span id="qAmb">Click on the map</span></p>
-              <p><small>Nearest Hospital</small><span id="qHosp">-</span></p>
-              <p><small>Estimated Arrival</small><span id="qEta">-</span></p>
+              <strong>Shortest Path Estimate</strong>
+              <p><small>Nearest Unit</small><span id="qAmb">Click on the map</span></p>
+              <p><small>Nearest Center</small><span id="qHosp">-</span></p>
+              <p><small>Estimated Transit</small><span id="qEta">-</span></p>
             </div>
-            <button id="reset-patient" type="button">Clear patient</button>
+            <button id="reset-patient" type="button">Clear Incident Marker</button>
           </aside>
         </div>
       </div>
-
-      <style>{`
-        .em-layout { display:grid; grid-template-columns:1fr 300px; gap:16px; }
-        .em-side { background:#fff; border:1px solid #e3e8f0; border-radius:12px; padding:16px; align-self:start; }
-        .em-side h3 { margin:0 0 8px; }
-        .em-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #e3e8f0; }
-        .em-quick { margin-top:12px; background:#eef4ff; border-radius:10px; padding:12px; }
-        .em-quick p { margin:8px 0 0; } .em-quick small { display:block; color:#5b6478; }
-        .em-side button { margin-top:12px; width:100%; padding:9px; border:0; border-radius:8px; background:#1f6fe5; color:#fff; cursor:pointer; }
-        .pin { display:grid; place-items:center; width:30px; height:30px; border-radius:50%; color:#fff; font:700 12px sans-serif; border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.35); }
-        .pin.ok { background:#1a9c55; } .pin.busy { background:#e23744; }
-        .pin.hosp { background:#1f6fe5; border-radius:6px; } .pin.pat { background:#f39c12; }
-        @media (max-width:800px) { .em-layout { grid-template-columns:1fr; } }
-      `}</style>
     </section>
   );
 }

@@ -25,14 +25,25 @@ export default function AmbulanceDashboard() {
   return (
     <section id="ambulances" className="ambulance-dashboard">
       <div className="dashboard-container">
-        <h2>🚑 Ambulance Status</h2>
-        <p>Current ambulance availability in Chandigarh</p>
+        <div className="section-heading">
+          <span className="section-overline">FLEET TELEMETRY</span>
+          <h2>Ambulance Fleet Status</h2>
+          <p>Live telemetry and availability monitoring across Chandigarh sectors</p>
+        </div>
         <div className="ambulance-cards">
           {ambulances.map((a) => (
             <div key={a.id} className={`ambulance-card ${a.busy ? 'busy' : 'available'}`}>
-              <h3>{a.id}</h3>
-              <p>📍 {a.location}</p>
-              <span>{a.busy ? 'Busy' : 'Available'}</span>
+              <div className="ambulance-card-header">
+                <span className="ambulance-id">{a.id}</span>
+                <span className={`status-pill ${a.busy ? 'busy' : 'available'}`}>
+                  <span className="status-dot" />
+                  {a.busy ? 'Busy' : 'Available'}
+                </span>
+              </div>
+              <div className="ambulance-card-body">
+                <span className="location-label">Station Base</span>
+                <p className="location-text">📍 {a.location}</p>
+              </div>
             </div>
           ))}
         </div>

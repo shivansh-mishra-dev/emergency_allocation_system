@@ -1,1333 +1,993 @@
-/* ================================
-   GLOBAL
-================================ */
+/* ==========================================================================
+   Genesis Design System - Complete Stylesheet
+   Project: Emergency Ambulance Allocation System
+   ========================================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* --------------------------------------------------------------------------
+   Container & Section Spacing (4px grid base)
+   -------------------------------------------------------------------------- */
+.navbar-container,
+.hero,
+.section-container,
+.dashboard-container,
+.hospital-container,
+.map-container,
+.allocation-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-html {
-    scroll-behavior: smooth;
+section {
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f8fc;
-    color: #172033;
-    line-height: 1.6;
-}
-
-
-/* ================================
-   NAVBAR
-================================ */
-
-.navbar {
-    width: 100%;
-    min-height: 75px;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #d71920;
-}
-
-.logo span {
-    color: #172033;
-    margin-left: 5px;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333b4f;
-    font-size: 15px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: #d71920;
-}
-
-.login-btn {
-    background: #d71920;
-    color: white !important;
-    padding: 10px 20px;
-    border-radius: 8px;
-}
-
-.login-btn:hover {
-    background: #b9141a;
-}
-
-
-/* ================================
-   HERO SECTION
-================================ */
-
-.hero {
-    min-height: 560px;
-    padding: 80px 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    background: linear-gradient(135deg, #fff5f5, #eef5ff);
-}
-
-.hero-content {
-    max-width: 650px;
-}
-
-.small-title {
-    color: #d71920;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.hero h1 {
-    font-size: 54px;
-    line-height: 1.1;
-    margin-bottom: 22px;
-}
-
-.hero h1 span {
-    color: #d71920;
-}
-
-.hero-text {
-    font-size: 18px;
-    color: #596579;
-    max-width: 570px;
-    margin-bottom: 30px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.primary-btn,
-.secondary-btn {
-    border: none;
-    padding: 14px 24px;
-    border-radius: 9px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.primary-btn {
-    background: #d71920;
-    color: white;
-}
-
-.primary-btn:hover {
-    background: #b9141a;
-    transform: translateY(-2px);
-}
-
-.secondary-btn {
-    background: white;
-    color: #d71920;
-    border: 1px solid #d71920;
-}
-
-.secondary-btn:hover {
-    background: #fff0f0;
-}
-
-
-/* ================================
-   HERO CARD
-================================ */
-
-.hero-card {
-    width: 340px;
-    background: white;
-    padding: 40px 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(31, 45, 61, 0.12);
-}
-
-.ambulance-icon {
-    font-size: 75px;
-    margin-bottom: 15px;
-}
-
-.hero-card h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.hero-card p {
-    color: #687386;
-    margin-bottom: 20px;
-}
-
-.status {
-    display: inline-block;
-    background: #e9f9ef;
-    color: #16833b;
-    padding: 8px 15px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-    background: #22a447;
-    display: inline-block;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-
-/* ================================
-   STATISTICS
-================================ */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 50px 7%;
-    background: white;
-}
-
-.stat-card {
-    text-align: center;
-    padding: 25px;
-    border-radius: 15px;
-    background: #f7f9fc;
-}
-
-.stat-card h2 {
-    color: #d71920;
-    font-size: 32px;
-    margin-bottom: 5px;
-}
-
-.stat-card p {
-    color: #687386;
-}
-
-
-/* ================================
-   COMMON SECTION
-================================ */
-
-.allocation,
-.features {
-    padding: 85px 7%;
-}
-
+/* --------------------------------------------------------------------------
+   Typography & Section Headings
+   -------------------------------------------------------------------------- */
 .section-heading {
-    text-align: center;
-    margin-bottom: 45px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px auto;
 }
 
-.section-heading p {
-    color: #d71920;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
+.section-overline {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-neutral);
+  margin-bottom: 8px;
 }
 
 .section-heading h2 {
-    font-size: 38px;
-    margin-bottom: 10px;
-}
-
-.section-heading span {
-    color: #687386;
-}
-
-
-/* ================================
-   ALLOCATION BOX
-================================ */
-
-.allocation-box {
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(31, 45, 61, 0.09);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.input-group input,
-.input-group select {
-    padding: 13px;
-    border: 1px solid #d8dee8;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-}
-
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #d71920;
-}
-
-.allocate-btn {
-    grid-column: 1 / -1;
-    padding: 15px;
-    border: none;
-    border-radius: 9px;
-    background: #d71920;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.allocate-btn:hover {
-    background: #b9141a;
-}
-
-
-/* ================================
-   RESULT
-================================ */
-
-.result-box {
-    max-width: 1000px;
-    margin: 25px auto 0;
-    padding: 25px;
-    background: #ffffff;
-    border-left: 5px solid #d71920;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-}
-
-.result-box h3 {
-    margin-bottom: 8px;
-}
-
-.result-box p {
-    color: #687386;
-}
-
-
-/* ================================
-   FEATURE CARDS
-================================ */
-
-.features {
-    background: #eef3f8;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.feature-card {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(31, 45, 61, 0.07);
-    transition: 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
-.feature-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-}
-
-.feature-card h3 {
-    margin-bottom: 8px;
-}
-
-.feature-card p {
-    color: #687386;
-    margin-bottom: 12px;
-}
-
-.available {
-    color: #16833b;
-    font-weight: bold;
-}
-
-.busy {
-    color: #d27a00;
-    font-weight: bold;
-}
-
-
-/* ================================
-   FOOTER
-================================ */
-
-footer {
-    background: #172033;
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-}
-
-footer h3 {
-    margin-bottom: 8px;
-}
-
-footer p {
-    color: #b9c2d0;
-    margin: 5px 0;
-}
-
-
-/* ================================
-   RESPONSIVE DESIGN
-================================ */
-
-@media (max-width: 900px) {
-
-    .navbar {
-        padding: 15px 5%;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .allocation-box {
-        grid-template-columns: 1fr;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero-card {
-        width: 100%;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .nav-links {
-        width: 100%;
-    }
-}
-/* =========================
-   CHANDIGARH EMERGENCY MAP
-   ========================= */
-
-.map-section {
-    padding: 70px 20px;
-    background: #f8fafc;
-}
-
-.map-container {
-    max-width: 1100px;
-    margin: auto;
-    text-align: center;
-}
-
-.map-container h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #1e293b;
-}
-
-.map-container p {
-    color: #64748b;
-    margin-bottom: 30px;
-}
-
-.chandigarh-map {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    background: #e8f0e8;
-    border: 3px solid #cbd5e1;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* Map title */
-
-.map-title {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: #334155;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-/* All map points */
-
-.map-point {
-    position: absolute;
-    padding: 9px 13px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* Ambulances */
-
-.ambulance-point {
-    background: #fee2e2;
-    border: 2px solid #dc2626;
-    color: #991b1b;
-}
-
-/* Hospitals */
-
-.hospital-point {
-    background: #dbeafe;
-    border: 2px solid #2563eb;
-    color: #1e40af;
-}
-
-/* Ambulance positions */
-
-.point-17 {
-    top: 30%;
-    left: 45%;
-}
-
-.point-22 {
-    top: 45%;
-    left: 25%;
-}
-
-.point-34 {
-    top: 70%;
-    left: 65%;
-}
-
-.point-16 {
-    top: 20%;
-    left: 65%;
-}
-
-.point-32 {
-    top: 65%;
-    left: 35%;
-}
-
-/* Hospital positions */
-
-.hospital-16 {
-    top: 10%;
-    left: 35%;
-}
-
-.hospital-32 {
-    top: 55%;
-    left: 75%;
-}
-/* =========================
-   AMBULANCE STATUS DASHBOARD
-   ========================= */
-
-.ambulance-dashboard {
-    padding: 70px 20px;
-    background: #ffffff;
-}
-
-.dashboard-container {
-    max-width: 1100px;
-    margin: auto;
-    text-align: center;
-}
-
-.dashboard-container h2 {
-    font-size: 32px;
-    color: #1e293b;
-    margin-bottom: 10px;
-}
-
-.dashboard-container > p {
-    color: #64748b;
-    margin-bottom: 35px;
-}
-
-.ambulance-cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-}
-
-.ambulance-card {
-    padding: 25px 15px;
-    border-radius: 15px;
-    background: #ffffff;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
-}
-
-.ambulance-card:hover {
-    transform: translateY(-5px);
-}
-
-.ambulance-card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: #1e293b;
-}
-
-.ambulance-card p {
-    color: #64748b;
-    margin-bottom: 15px;
-}
-
-.ambulance-card span {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* Available ambulance */
-
-.ambulance-card.available {
-    border-top: 5px solid #16a34a;
-}
-
-.ambulance-card.available span {
-    background: #dcfce7;
-    color: #166534;
-}
-
-/* Busy ambulance */
-
-.ambulance-card.busy {
-    border-top: 5px solid #dc2626;
-}
-
-.ambulance-card.busy span {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-/* Mobile */
-
-@media (max-width: 800px) {
-
-    .ambulance-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 500px) {
-
-    .ambulance-cards {
-        grid-template-columns: 1fr;
-    }
-
-}
-/* =========================
-   HOSPITAL SECTION
-   ========================= */
-
-.hospital-section {
-    padding: 70px 20px;
-    background: #f8fafc;
-}
-
-.hospital-container {
-    max-width: 1100px;
-    margin: auto;
-    text-align: center;
-}
-
-.hospital-container h2 {
-    font-size: 32px;
-    color: #1e293b;
-    margin-bottom: 10px;
-}
-
-.hospital-container > p {
-    color: #64748b;
-    margin-bottom: 35px;
-}
-
-.hospital-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.hospital-card {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 16px;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-    border-top: 5px solid #2563eb;
-    transition: transform 0.2s ease;
-}
-
-.hospital-card:hover {
-    transform: translateY(-5px);
-}
-
-.hospital-card h3 {
-    color: #1e293b;
-    margin-bottom: 15px;
-}
-
-.hospital-card p {
-    color: #64748b;
-    margin-bottom: 18px;
-}
-
-.hospital-card span {
-    display: inline-block;
-    padding: 7px 13px;
-    border-radius: 20px;
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* Mobile */
-
-@media (max-width: 800px) {
-
-    .hospital-cards {
-        grid-template-columns: 1fr;
-    }
-
-/* =========================
-   PROFESSIONAL CHANDIGARH MAP
-   ========================= */
-
-.map-section {
-    padding: 70px 20px;
-    background: #f8fafc;
-}
-
-.map-container {
-    max-width: 1100px;
-    margin: auto;
-}
-
-.map-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.map-heading h2 {
-    margin: 0 0 8px;
-    font-size: 32px;
-    color: #1e293b;
-}
-
-.map-heading p {
-    margin: 0;
-    color: #64748b;
-}
-
-.map-status {
-    background: #dcfce7;
-    color: #166534;
-    padding: 10px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* Main map */
-
-.map-wrapper {
-    position: relative;
-    height: 560px;
-    overflow: hidden;
-    border-radius: 20px;
-    border: 2px solid #cbd5e1;
-    background:
-        linear-gradient(90deg, transparent 49%, #d5dce5 50%, transparent 51%),
-        linear-gradient(0deg, transparent 49%, #d5dce5 50%, transparent 51%),
-        #e7efe7;
-    background-size: 120px 120px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
-}
-
-/* Map title */
-
-.map-label {
-    position: absolute;
-    top: 20px;
-    left: 25px;
-    background: white;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #334155;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    z-index: 5;
-}
-
-/* Roads */
-
-.road {
-    position: absolute;
-    background: #ffffff;
-    box-shadow: 0 0 0 2px #d1d5db;
-    z-index: 1;
-}
-
-.road-horizontal {
-    width: 100%;
-    height: 12px;
-    left: 0;
-}
-
-.road-1 {
-    top: 28%;
-}
-
-.road-2 {
-    top: 50%;
-}
-
-.road-3 {
-    top: 72%;
-}
-
-.road-vertical {
-    width: 12px;
-    height: 100%;
-    top: 0;
-}
-
-.road-v1 {
-    left: 25%;
-}
-
-.road-v2 {
-    left: 50%;
-}
-
-.road-v3 {
-    left: 75%;
-}
-
-/* Sector labels */
-
-.sector {
-    position: absolute;
-    font-size: 28px;
-    font-weight: bold;
-    color: rgba(51, 65, 85, 0.35);
-    z-index: 2;
-}
-
-.sector-16 {
-    top: 12%;
-    left: 17%;
-}
-
-.sector-17 {
-    top: 18%;
-    left: 42%;
-}
-
-.sector-22 {
-    top: 35%;
-    left: 17%;
-}
-
-.sector-32 {
-    top: 62%;
-    left: 42%;
-}
-
-.sector-34 {
-    top: 70%;
-    left: 68%;
-}
-
-/* Markers */
-
-.map-marker {
-    position: absolute;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 11px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-    white-space: nowrap;
-}
-
-.map-marker span {
-    font-size: 12px;
-}
-
-/* Available ambulance */
-
-.ambulance-marker {
-    background: #dcfce7;
-    border: 2px solid #16a34a;
-    color: #166534;
-}
-
-/* Busy ambulance */
-
-.busy-marker {
-    background: #fee2e2;
-    border: 2px solid #dc2626;
-    color: #991b1b;
-}
-
-/* Hospital */
-
-.hospital-marker {
-    background: #dbeafe;
-    border: 2px solid #2563eb;
-    color: #1e40af;
-}
-
-/* Patient */
-
-.patient-marker {
-    background: #fef3c7;
-    border: 2px solid #d97706;
-    color: #92400e;
-    animation: patientPulse 1.5s infinite;
-}
-
-/* Marker positions */
-
-.ambulance-1 {
-    top: 19%;
-    left: 43%;
-}
-
-.ambulance-2 {
-    top: 42%;
-    left: 20%;
-}
-
-.ambulance-3 {
-    top: 67%;
-    left: 64%;
-}
-
-.ambulance-4 {
-    top: 14%;
-    left: 67%;
-}
-
-.ambulance-5 {
-    top: 63%;
-    left: 37%;
-}
-
-.hospital-marker-1 {
-    top: 8%;
-    left: 27%;
-}
-
-.hospital-marker-2 {
-    top: 58%;
-    left: 72%;
-}
-
-.hospital-marker-3 {
-    top: 36%;
-    left: 48%;
-}
-
-.patient-marker {
-    top: 46%;
-    left: 52%;
-}
-
-/* Route */
-
-.route-line {
-    position: absolute;
-    width: 230px;
-    height: 5px;
-    background: #dc2626;
-    top: 49%;
-    left: 43%;
-    transform: rotate(25deg);
-    border-radius: 10px;
-    z-index: 4;
-    box-shadow: 0 0 8px rgba(220,38,38,0.4);
-}
-
-/* Legend */
-
-.map-legend {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(255,255,255,0.95);
-    padding: 15px 18px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-    z-index: 20;
-}
-
-.map-legend h4 {
-    margin: 0 0 10px;
-    color: #334155;
-}
-
-.map-legend div {
-    margin: 7px 0;
-    font-size: 12px;
-    color: #475569;
-}
-
-.legend-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-.available-dot {
-    background: #16a34a;
-}
-
-.busy-dot {
-    background: #dc2626;
-}
-
-.hospital-dot {
-    background: #2563eb;
-}
-
-/* Patient animation */
-
-@keyframes patientPulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Mobile */
-
-@media (max-width: 700px) {
-
-    .map-heading {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .map-wrapper {
-        height: 500px;
-    }
-
-    .map-marker {
-        font-size: 11px;
-        padding: 6px 8px;
-    }
-
-    .map-marker span {
-        font-size: 10px;
-    }
-
-}
-/* FINAL MAP OVERRIDE */
-
-.map-wrapper {
-    display: block !important;
-    position: relative !important;
-    width: 100% !important;
-    height: 560px !important;
-    overflow: hidden !important;
-    background: #e7efe7 !important;
-    border: 3px solid #cbd5e1 !important;
-    border-radius: 20px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.10) !important;
-}
-
-.map-heading {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 25px !important;
-}
-
-.sector {
-    position: absolute !important;
-    font-size: 28px !important;
-    font-weight: bold !important;
-    color: rgba(51,65,85,0.35) !important;
-    z-index: 2 !important;
-}
-
-.road {
-    position: absolute !important;
-    background: white !important;
-    z-index: 1 !important;
-}
-
-.road-horizontal {
-    width: 100% !important;
-    height: 12px !important;
-    left: 0 !important;
-}
-
-.road-vertical {
-    width: 12px !important;
-    height: 100% !important;
-    top: 0 !important;
-}
-
-.map-marker {
-    position: absolute !important;
-    z-index: 10 !important;
-    padding: 8px 11px !important;
-    border-radius: 10px !important;
-    font-weight: bold !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18) !important; 
-}
-
-/* ================================
-   MISSING / SUPPLEMENTAL CLASSES
-================================ */
-
-/* Badge (hero section) */
-.badge {
-  display: inline-block;
-  background: #fff0f0;
-  color: #d71920;
-  padding: 8px 16px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* Hero image / circle */
-.hero-image {
-  flex-shrink: 0;
-}
-
-.circle {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffe5e5, #e5eeff);
-  display: flex;
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--color-text-primary);
+}
+
+.section-heading p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons (Genesis specification: 6px radius, shift up 1px on hover)
+   -------------------------------------------------------------------------- */
+.btn-primary,
+.primary-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 15px 40px rgba(215, 25, 32, 0.15);
-}
-
-.ambulance {
-  font-size: 100px;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-15px); }
-}
-
-/* btn-primary (used as <a> link) */
-.btn-primary {
-  display: inline-block;
-  text-decoration: none;
-  background: #d71920;
-  color: white;
-  padding: 14px 24px;
-  border-radius: 9px;
-  font-size: 15px;
-  font-weight: bold;
-  border: none;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: 0.3s;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
-.btn-primary:hover {
-  background: #b9141a;
-  transform: translateY(-2px);
+.btn-primary:hover,
+.primary-btn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-primary-btn);
 }
 
-/* section-text (features sub-heading) */
-.section-text {
-  color: #596579;
+.btn-secondary,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.btn-secondary:hover,
+.secondary-btn:hover {
+  border-color: var(--color-neutral);
+  background-color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+.btn-destructive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-error) !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-error);
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.btn-destructive:hover {
+  background-color: #fef2f2;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Chips & Badges (Genesis specification: pill 9999px radius, 12px font size)
+   -------------------------------------------------------------------------- */
+.badge,
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: #f4f4f6;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.badge-dot,
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}
+
+.status-pill.available,
+.status-pill.ok {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.status-pill.available .status-dot,
+.status-pill.ok .status-dot {
+  background-color: var(--color-success);
+}
+
+.status-pill.busy {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.status-pill.busy .status-dot {
+  background-color: var(--color-error);
+}
+
+/* --------------------------------------------------------------------------
+   Navbar (Genesis specification: 56px height, backdrop-blur, 1px border)
+   -------------------------------------------------------------------------- */
+.navbar {
+  width: 100%;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 18px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color 160ms ease;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--color-text-primary);
+}
+
+.login-btn {
+  height: 32px !important;
+  padding: 0 14px !important;
+  font-size: 13px !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-btn) !important;
+  background: transparent !important;
+  color: var(--color-text-primary) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease !important;
+}
+
+.login-btn:hover {
+  border-color: var(--color-neutral) !important;
+  background-color: var(--color-surface) !important;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section (Genesis specification: dot grid, bold display typography)
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  /* Interactive / architectural dot grid background */
+  background-color: var(--color-background);
+  background-image: radial-gradient(var(--color-border) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-content .badge {
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+.hero h1 span {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.hero-text,
+.hero p {
   font-size: 16px;
-  margin-bottom: 40px;
-  text-align: center;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
 }
 
-/* feature-container */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Genesis Hero Telemetry Frame Card (12px radius, gallery-frame surface) */
+.hero-visual {
+  flex-shrink: 0;
+  width: 380px;
+}
+
+.hero-frame-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hero-frame-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.frame-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: #fcfcfd;
+}
+
+.frame-card-tag {
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-neutral);
+}
+
+.frame-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-success);
+}
+
+.frame-card-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+}
+
+.frame-card-body {
+  padding: 20px;
+}
+
+.frame-card-hero-icon {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.frame-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.frame-stat-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.stat-label {
+  color: var(--color-text-secondary);
+}
+
+.stat-value {
+  font-family: var(--font-code);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Features Section (Genesis specification: 12px card, flat, hover lift)
+   -------------------------------------------------------------------------- */
+.features {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.feature-grid,
 .feature-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 24px;
 }
 
-@media (max-width: 900px) {
-  .feature-container { grid-template-columns: 1fr; }
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
-/* Allocation section */
-.allocation-section {
-  padding: 70px 20px;
-  background: #ffffff;
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
-.allocation-container {
-  max-width: 700px;
-  margin: auto;
-  text-align: center;
+.feature-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.allocation-container h2 {
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f6;
+  border-radius: var(--radius-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.feature-chip {
+  font-family: var(--font-code);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-tag);
+  background: #f4f4f6;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--color-text-primary);
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Ambulance Dashboard Section
+   -------------------------------------------------------------------------- */
+.ambulance-dashboard {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ambulance-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.ambulance-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px 16px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ambulance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ambulance-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ambulance-id {
+  font-family: var(--font-code);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.ambulance-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-neutral);
+}
+
+.location-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Hospitals Section
+   -------------------------------------------------------------------------- */
+.hospital-section {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hospital-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.hospital-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hospital-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hospital-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.hospital-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f6;
+  border-radius: var(--radius-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.hospital-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background-color: #f4f4f6;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+}
+
+.hospital-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.hospital-loc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Map Section
+   -------------------------------------------------------------------------- */
+.map-section {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.map-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.map-heading h2 {
   font-size: 32px;
-  color: #1e293b;
+  margin-bottom: 6px;
+  color: var(--color-text-primary);
+}
+
+.map-heading p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.map-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius-full);
+}
+
+.em-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+#map {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.em-side {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  align-self: start;
+}
+
+.em-side h3 {
+  font-size: 17px;
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+}
+
+.em-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.em-row b {
+  font-family: var(--font-code);
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.em-quick {
+  margin-top: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  padding: 16px;
+}
+
+.em-quick strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-neutral);
   margin-bottom: 10px;
 }
 
-.allocation-container > p {
-  color: #64748b;
-  margin-bottom: 30px;
+.em-quick p {
+  margin: 10px 0 0 0;
+  font-size: 13px;
+  color: var(--color-text-primary);
+}
+
+.em-quick small {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.em-quick span {
+  font-family: var(--font-code);
+  font-weight: 500;
+}
+
+.em-side button {
+  margin-top: 16px;
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.em-side button:hover {
+  border-color: var(--color-neutral);
+  background-color: #f8fafc;
+  transform: translateY(-1px);
+}
+
+/* Map Markers */
+.pin {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-family: var(--font-code);
+  font-weight: 600;
+  font-size: 11px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pin.ok {
+  background: var(--color-success);
+}
+
+.pin.busy {
+  background: var(--color-error);
+}
+
+.pin.hosp {
+  background: var(--color-primary);
+  border-radius: var(--radius-tag);
+}
+
+.pin.pat {
+  background: var(--color-warning);
+}
+
+/* --------------------------------------------------------------------------
+   Allocation Form Section (Genesis specification: 6px inputs, 3px focus ring)
+   -------------------------------------------------------------------------- */
+.allocation-section {
+  background-color: var(--color-background);
+}
+
+.allocation-container {
+  max-width: 640px;
+}
+
+.allocation-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 36px 32px;
+  box-shadow: none;
 }
 
 .request-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   text-align: left;
 }
 
-.request-form label {
-  font-weight: bold;
-  font-size: 14px;
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.request-form select {
-  padding: 13px;
-  border: 1px solid #d8dee8;
-  border-radius: 8px;
+.request-form label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.request-form select,
+.request-form input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
   font-size: 14px;
   outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
 }
 
-.request-form select:focus {
-  border-color: #d71920;
+.request-form select:focus,
+.request-form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
 }
 
-/* Allocation result card */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-actions .btn-primary {
+  flex: 1;
+}
+
+/* Allocation result card (injected into #allocationResult) */
 .allocation-result {
-  margin-top: 20px;
-  background: #fff;
-  border-left: 5px solid #d71920;
-  border-radius: 10px;
-  padding: 20px 25px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+  margin-top: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
   text-align: left;
 }
 
 .allocation-result h3 {
+  font-size: 16px;
   margin-bottom: 12px;
-  color: #1e293b;
+  color: var(--color-text-primary);
 }
 
 .allocation-result p {
-  color: #475569;
+  font-size: 13px;
+  color: var(--color-text-secondary);
   margin: 6px 0;
+}
+
+.allocation-result p strong {
+  color: var(--color-text-primary);
+}
+
+.form-message {
+  font-size: 13px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-input);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-message.error {
+  background-color: #fef2f2;
+  color: var(--color-error);
+  border: 1px solid #fecaca;
+}
+
+.form-message.success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+footer {
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+footer p {
+  margin: 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .ambulance-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 36px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .feature-grid,
+  .feature-container,
+  .hospital-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .em-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .ambulance-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn-primary,
+  .form-actions .btn-destructive {
+    width: 100%;
+  }
 }
