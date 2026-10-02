@@ -186,9 +186,32 @@ export default function MapSection() {
       map.setView(patient, 14);
     };
 
+    const resetMap = () => {
+      ambulances.forEach((a) => {
+        a.busy = false;
+        a.marker.setIcon(icon('ok', 'A'));
+      });
+      patient = null;
+      if (pMarker) {
+        map.removeLayer(pMarker);
+        pMarker = null;
+      }
+      if (route) {
+        map.removeLayer(route);
+        route = null;
+      }
+      map.setView([30.7333, 76.7794], 13);
+      refresh();
+    };
+
+    window.resetAmbulancesOnMap = resetMap;
+    window.addEventListener('fleet-reset', resetMap);
+
     return () => {
       map.remove();
       window.allocateAmbulanceOnMap = null;
+      window.resetAmbulancesOnMap = null;
+      window.removeEventListener('fleet-reset', resetMap);
     };
   }, []);
 

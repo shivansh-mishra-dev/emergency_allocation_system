@@ -12,14 +12,25 @@ export default function AmbulanceDashboard() {
   const [ambulances, setAmbulances] = useState(STATIC_AMBULANCES);
 
   useEffect(() => {
-    fetch('/api/ambulances')
-      .then((res) => res.json())
-      .then((data) => {
-        setAmbulances(
-          data.map((a) => ({ id: a.ambulance_id, location: a.location, busy: a.status !== 'Available' }))
-        );
-      })
-      .catch(() => { }); // fallback to static data on error
+    const fetchAmbulances = () => {
+      fetch('/api/ambulances')
+        .then((res) => res.json())
+        .then((data) => {
+          setAmbulances(
+            data.map((a) => ({ id: a.ambulance_id, location: a.location, busy: a.status !== 'Available' }))
+          );
+        })
+        .catch(() => { }); // fallback to static data on error
+    };
+
+    fetchAmbulances();
+    window.addEventListener('fleet-reset', fetchAmbulances);
+    window.addEventListener('fleet-updated', fetchAmbulances);
+
+    return () => {
+      window.removeEventListener('fleet-reset', fetchAmbulances);
+      window.removeEventListener('fleet-updated', fetchAmbulances);
+    };
   }, []);
 
   return (

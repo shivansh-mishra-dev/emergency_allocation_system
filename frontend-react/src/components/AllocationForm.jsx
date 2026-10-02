@@ -25,6 +25,7 @@ export default function AllocationForm() {
           if (window.allocateAmbulanceOnMap) {
             window.allocateAmbulanceOnMap(location, hospital, priority, resultEl, data.allocatedAmbulance.ambulance_id);
           }
+          window.dispatchEvent(new Event('fleet-updated'));
           setResult(null); // map section renders result directly into resultEl
         } else {
           setResult({ type: 'error', message: data.message });
@@ -41,7 +42,15 @@ export default function AllocationForm() {
       .then((data) => {
         if (data.success) {
           setResult({ type: 'success', message: data.message });
-          setTimeout(() => window.location.reload(), 1500);
+          const resultEl = document.getElementById('allocationResult');
+          if (resultEl) resultEl.innerHTML = '';
+          setLocation('');
+          setPriority('');
+          setHospital('');
+          window.dispatchEvent(new Event('fleet-reset'));
+          if (window.resetAmbulancesOnMap) {
+            window.resetAmbulancesOnMap();
+          }
         } else {
           setResult({ type: 'error', message: data.error });
         }
