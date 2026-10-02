@@ -1,0 +1,32 @@
+[
+  {
+    "ambulance_id": "A101",
+    "location": "Sector 17",
+    "status": "Available",
+    "capacity": "All"
+  },
+  {
+    "ambulance_id": "A102",
+    "location": "Sector 22",
+    "status": "Available",
+    "capacity": "All"
+  },
+  {
+    "ambulance_id": "A103",
+    "location": "Sector 34",
+    "status": "Busy",
+    "capacity": "All"
+  },
+  {
+    "ambulance_id": "A104",
+    "location": "Sector 16",
+    "status": "Available",
+    "capacity": "Critical"
+  },
+  {
+    "ambulance_id": "A105",
+    "location": "Sector 32",
+    "status": "Available",
+    "capacity": "All"
+  }
+]
