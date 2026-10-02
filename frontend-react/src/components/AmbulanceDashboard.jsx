@@ -12,14 +12,14 @@ export default function AmbulanceDashboard() {
   const [ambulances, setAmbulances] = useState(STATIC_AMBULANCES);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/ambulances')
+    fetch('http://localhost:3005/api/ambulances')
       .then((res) => res.json())
       .then((data) => {
         setAmbulances(
           data.map((a) => ({ id: a.ambulance_id, location: a.location, busy: a.status !== 'Available' }))
         );
       })
-      .catch(() => {}); // fallback to static data on error
+      .catch(() => { }); // fallback to static data on error
   }, []);
 
   return (
