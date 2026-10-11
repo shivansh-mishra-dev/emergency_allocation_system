@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { apiRequest } from '../api';
 
 const STATIC_AMBULANCES = [
   { id: 'A101', location: 'Sector 17', busy: false },
   { id: 'A102', location: 'Sector 22', busy: false },
-  { id: 'A103', location: 'Sector 34', busy: true },
+  { id: 'A103', location: 'Sector 34', busy: false },
   { id: 'A104', location: 'Sector 16', busy: false },
   { id: 'A105', location: 'Sector 32', busy: false },
 ];
@@ -12,15 +13,21 @@ export default function AmbulanceDashboard() {
   const [ambulances, setAmbulances] = useState(STATIC_AMBULANCES);
 
   useEffect(() => {
-    const fetchAmbulances = () => {
-      fetch('/api/ambulances')
-        .then((res) => res.json())
-        .then((data) => {
+    const fetchAmbulances = async () => {
+      try {
+        const { ok, data } = await apiRequest('/api/ambulances');
+        if (ok && Array.isArray(data)) {
           setAmbulances(
-            data.map((a) => ({ id: a.ambulance_id, location: a.location, busy: a.status !== 'Available' }))
+            data.map((a) => ({
+              id: a.ambulance_id,
+              location: a.location,
+              busy: a.status !== 'Available',
+            }))
           );
-        })
-        .catch(() => { }); // fallback to static data on error
+        }
+      } catch {
+        // Preserve state if offline
+      }
     };
 
     fetchAmbulances();

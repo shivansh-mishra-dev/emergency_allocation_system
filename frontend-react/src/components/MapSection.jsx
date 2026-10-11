@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { apiRequest } from '../api';
 
 const AMBULANCES = [
   { id: 'A101', lat: 30.7420, lng: 76.8000, busy: false },
   { id: 'A102', lat: 30.7480, lng: 76.7700, busy: false },
-  { id: 'A103', lat: 30.7300, lng: 76.7900, busy: true },
+  { id: 'A103', lat: 30.7300, lng: 76.7900, busy: false },
   { id: 'A104', lat: 30.7550, lng: 76.8000, busy: false },
   { id: 'A105', lat: 30.7100, lng: 76.7900, busy: false },
 ];
@@ -204,6 +205,29 @@ export default function MapSection() {
       refresh();
     };
 
+    const syncAmbulancesFromBackend = async () => {
+      try {
+        const { ok, data } = await apiRequest('/api/ambulances');
+        if (ok && Array.isArray(data)) {
+          data.forEach((bAmb) => {
+            const mAmb = ambulances.find((a) => a.id === bAmb.ambulance_id);
+            if (mAmb) {
+              mAmb.busy = bAmb.status !== 'Available';
+              if (mAmb.marker) {
+                mAmb.marker.setIcon(icon(mAmb.busy ? 'busy' : 'ok', 'A'));
+              }
+            }
+          });
+          refresh();
+        }
+      } catch {
+        // Fallback to local state
+      }
+    };
+
+    syncAmbulancesFromBackend();
+    window.addEventListener('fleet-updated', syncAmbulancesFromBackend);
+
     window.resetAmbulancesOnMap = resetMap;
     window.addEventListener('fleet-reset', resetMap);
 
@@ -212,6 +236,7 @@ export default function MapSection() {
       window.allocateAmbulanceOnMap = null;
       window.resetAmbulancesOnMap = null;
       window.removeEventListener('fleet-reset', resetMap);
+      window.removeEventListener('fleet-updated', syncAmbulancesFromBackend);
     };
   }, []);
 

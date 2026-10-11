@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiRequest } from '../api';
 
 export default function AllocationForm() {
   const [location, setLocation] = useState('');
@@ -6,7 +7,7 @@ export default function AllocationForm() {
   const [hospital, setHospital] = useState('');
   const [result, setResult] = useState(null);
 
-  function requestAmbulance() {
+  async function requestAmbulance() {
     if (!location || !priority || !hospital) {
       setResult({ type: 'error', message: 'Please select patient sector, emergency priority, and destination hospital.' });
       return;
@@ -14,48 +15,47 @@ export default function AllocationForm() {
 
     const resultEl = document.getElementById('allocationResult');
 
-    fetch('/api/allocate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sector: location, priority, hospital }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          if (window.allocateAmbulanceOnMap) {
-            window.allocateAmbulanceOnMap(location, hospital, priority, resultEl, data.allocatedAmbulance.ambulance_id);
-          }
-          window.dispatchEvent(new Event('fleet-updated'));
-          setResult(null); // map section renders result directly into resultEl
-        } else {
-          setResult({ type: 'error', message: data.message });
-        }
-      })
-      .catch(() => {
-        setResult({ type: 'error', message: 'Could not connect to the backend server (). Please ensure server is running.' });
+    try {
+      const { ok, data } = await apiRequest('/api/allocate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sector: location, priority, hospital }),
       });
+
+      if (ok && data.success) {
+        if (window.allocateAmbulanceOnMap) {
+          window.allocateAmbulanceOnMap(location, hospital, priority, resultEl, data.allocatedAmbulance.ambulance_id);
+        }
+        window.dispatchEvent(new Event('fleet-updated'));
+        setResult(null); // map section renders result directly into resultEl
+      } else {
+        setResult({ type: 'error', message: data.message || 'No ambulances available at the moment' });
+      }
+    } catch {
+      setResult({ type: 'error', message: 'Could not connect to the backend server. Please ensure server is running.' });
+    }
   }
 
-  function resetAmbulances() {
-    fetch('/api/reset', { method: 'POST' })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setResult({ type: 'success', message: data.message });
-          const resultEl = document.getElementById('allocationResult');
-          if (resultEl) resultEl.innerHTML = '';
-          setLocation('');
-          setPriority('');
-          setHospital('');
-          window.dispatchEvent(new Event('fleet-reset'));
-          if (window.resetAmbulancesOnMap) {
-            window.resetAmbulancesOnMap();
-          }
-        } else {
-          setResult({ type: 'error', message: data.error });
+  async function resetAmbulances() {
+    try {
+      const { ok, data } = await apiRequest('/api/reset', { method: 'POST' });
+      if (ok && data.success) {
+        setResult({ type: 'success', message: data.message });
+        const resultEl = document.getElementById('allocationResult');
+        if (resultEl) resultEl.innerHTML = '';
+        setLocation('');
+        setPriority('');
+        setHospital('');
+        window.dispatchEvent(new Event('fleet-reset'));
+        if (window.resetAmbulancesOnMap) {
+          window.resetAmbulancesOnMap();
         }
-      })
-      .catch(() => setResult({ type: 'error', message: 'Could not reach the backend server to reset fleet status.' }));
+      } else {
+        setResult({ type: 'error', message: data.error || 'Failed to reset ambulances' });
+      }
+    } catch {
+      setResult({ type: 'error', message: 'Could not reach the backend server to reset fleet status.' });
+    }
   }
 
   return (

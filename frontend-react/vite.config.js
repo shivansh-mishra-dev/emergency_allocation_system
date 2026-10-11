@@ -5,6 +5,21 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: [".duckdns.org"]
-  }
-})
+    allowedHosts: ['.duckdns.org'],
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3005',
+        changeOrigin: true,
+      },
+    },
+  },
+  preview: {
+    allowedHosts: ['.duckdns.org'],
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3005',
+        changeOrigin: true,
+      },
+    },
+  },
+});
