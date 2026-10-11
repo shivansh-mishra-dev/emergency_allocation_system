@@ -1,0 +1,993 @@
+/* ==========================================================================
+   Genesis Design System - Complete Stylesheet
+   Project: Emergency Ambulance Allocation System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Container & Section Spacing (4px grid base)
+   -------------------------------------------------------------------------- */
+.navbar-container,
+.hero,
+.section-container,
+.dashboard-container,
+.hospital-container,
+.map-container,
+.allocation-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+/* --------------------------------------------------------------------------
+   Typography & Section Headings
+   -------------------------------------------------------------------------- */
+.section-heading {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px auto;
+}
+
+.section-overline {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-neutral);
+  margin-bottom: 8px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--color-text-primary);
+}
+
+.section-heading p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons (Genesis specification: 6px radius, shift up 1px on hover)
+   -------------------------------------------------------------------------- */
+.btn-primary,
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.btn-primary:hover,
+.primary-btn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-primary-btn);
+}
+
+.btn-secondary,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.btn-secondary:hover,
+.secondary-btn:hover {
+  border-color: var(--color-neutral);
+  background-color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+.btn-destructive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-error) !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-error);
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.btn-destructive:hover {
+  background-color: #fef2f2;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Chips & Badges (Genesis specification: pill 9999px radius, 12px font size)
+   -------------------------------------------------------------------------- */
+.badge,
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: #f4f4f6;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.badge-dot,
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}
+
+.status-pill.available,
+.status-pill.ok {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.status-pill.available .status-dot,
+.status-pill.ok .status-dot {
+  background-color: var(--color-success);
+}
+
+.status-pill.busy {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.status-pill.busy .status-dot {
+  background-color: var(--color-error);
+}
+
+/* --------------------------------------------------------------------------
+   Navbar (Genesis specification: 56px height, backdrop-blur, 1px border)
+   -------------------------------------------------------------------------- */
+.navbar {
+  width: 100%;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 18px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color 160ms ease;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--color-text-primary);
+}
+
+.login-btn {
+  height: 32px !important;
+  padding: 0 14px !important;
+  font-size: 13px !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-btn) !important;
+  background: transparent !important;
+  color: var(--color-text-primary) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease !important;
+}
+
+.login-btn:hover {
+  border-color: var(--color-neutral) !important;
+  background-color: var(--color-surface) !important;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section (Genesis specification: dot grid, bold display typography)
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  /* Interactive / architectural dot grid background */
+  background-color: var(--color-background);
+  background-image: radial-gradient(var(--color-border) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-content .badge {
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  color: var(--color-text-primary);
+}
+
+.hero h1 span {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.hero-text,
+.hero p {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Genesis Hero Telemetry Frame Card (12px radius, gallery-frame surface) */
+.hero-visual {
+  flex-shrink: 0;
+  width: 380px;
+}
+
+.hero-frame-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hero-frame-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.frame-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: #fcfcfd;
+}
+
+.frame-card-tag {
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-neutral);
+}
+
+.frame-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-success);
+}
+
+.frame-card-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+}
+
+.frame-card-body {
+  padding: 20px;
+}
+
+.frame-card-hero-icon {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.frame-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.frame-stat-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.stat-label {
+  color: var(--color-text-secondary);
+}
+
+.stat-value {
+  font-family: var(--font-code);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Features Section (Genesis specification: 12px card, flat, hover lift)
+   -------------------------------------------------------------------------- */
+.features {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.feature-grid,
+.feature-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.feature-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f6;
+  border-radius: var(--radius-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.feature-chip {
+  font-family: var(--font-code);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-tag);
+  background: #f4f4f6;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--color-text-primary);
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Ambulance Dashboard Section
+   -------------------------------------------------------------------------- */
+.ambulance-dashboard {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ambulance-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.ambulance-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px 16px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ambulance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ambulance-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ambulance-id {
+  font-family: var(--font-code);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.ambulance-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-neutral);
+}
+
+.location-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Hospitals Section
+   -------------------------------------------------------------------------- */
+.hospital-section {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hospital-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.hospital-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hospital-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hospital-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.hospital-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f4f4f6;
+  border-radius: var(--radius-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.hospital-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background-color: #f4f4f6;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+}
+
+.hospital-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.hospital-loc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Map Section
+   -------------------------------------------------------------------------- */
+.map-section {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.map-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.map-heading h2 {
+  font-size: 32px;
+  margin-bottom: 6px;
+  color: var(--color-text-primary);
+}
+
+.map-heading p {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.map-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius-full);
+}
+
+.em-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+#map {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.em-side {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  align-self: start;
+}
+
+.em-side h3 {
+  font-size: 17px;
+  margin-bottom: 16px;
+  color: var(--color-text-primary);
+}
+
+.em-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.em-row b {
+  font-family: var(--font-code);
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.em-quick {
+  margin-top: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  padding: 16px;
+}
+
+.em-quick strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-neutral);
+  margin-bottom: 10px;
+}
+
+.em-quick p {
+  margin: 10px 0 0 0;
+  font-size: 13px;
+  color: var(--color-text-primary);
+}
+
+.em-quick small {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.em-quick span {
+  font-family: var(--font-code);
+  font-weight: 500;
+}
+
+.em-side button {
+  margin-top: 16px;
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.em-side button:hover {
+  border-color: var(--color-neutral);
+  background-color: #f8fafc;
+  transform: translateY(-1px);
+}
+
+/* Map Markers */
+.pin {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-family: var(--font-code);
+  font-weight: 600;
+  font-size: 11px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pin.ok {
+  background: var(--color-success);
+}
+
+.pin.busy {
+  background: var(--color-error);
+}
+
+.pin.hosp {
+  background: var(--color-primary);
+  border-radius: var(--radius-tag);
+}
+
+.pin.pat {
+  background: var(--color-warning);
+}
+
+/* --------------------------------------------------------------------------
+   Allocation Form Section (Genesis specification: 6px inputs, 3px focus ring)
+   -------------------------------------------------------------------------- */
+.allocation-section {
+  background-color: var(--color-background);
+}
+
+.allocation-container {
+  max-width: 640px;
+}
+
+.allocation-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 36px 32px;
+  box-shadow: none;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.request-form label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.request-form select,
+.request-form input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+.request-form select:focus,
+.request-form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-actions .btn-primary {
+  flex: 1;
+}
+
+/* Allocation result card (injected into #allocationResult) */
+.allocation-result {
+  margin-top: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.allocation-result h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--color-text-primary);
+}
+
+.allocation-result p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 6px 0;
+}
+
+.allocation-result p strong {
+  color: var(--color-text-primary);
+}
+
+.form-message {
+  font-size: 13px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-input);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-message.error {
+  background-color: #fef2f2;
+  color: var(--color-error);
+  border: 1px solid #fecaca;
+}
+
+.form-message.success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+footer {
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+footer p {
+  margin: 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .ambulance-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 36px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .feature-grid,
+  .feature-container,
+  .hospital-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .em-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .ambulance-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn-primary,
+  .form-actions .btn-destructive {
+    width: 100%;
+  }
+}
